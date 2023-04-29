@@ -39,10 +39,14 @@ In order of difficulty/complexity:
 - [Short series showing basic python programming and module development (in German with English subtitles)](https://youtube.com/playlist?list=PLJWCUXz3GeAfmYLiFcKus_c0jcsMnVsgb)
 
 ## Python module examples
-- [Robarts lab good baseline code (without .ui file)](https://github.com/lgroves6/SlicerIGTDevelopment/blob/master/YourModuleName.py)
+- [Robarts lab good baseline code (without .ui file - requires manually editing the widgets in the .py file)](https://github.com/lgroves6/SlicerIGTDevelopment/blob/master/YourModuleName.py)
 - [Slicer Case Iterator](https://github.com/JoostJM/SlicerCaseIterator): iterate through cases 
 
 ## Misc ressources
+### Git
 - [Getting started with Git](https://swcarpentry.github.io/git-novice/)
+### PyQt - building a GUI (outside of Slicer, helps to understand how to build a GUI in Slicer)
+- [PyQt tutorial](https://realpython.com/python-pyqt-gui-calculator/)
+- [PyQt video series](https://youtu.be/Vde5SH8e1OQ)
 
 
