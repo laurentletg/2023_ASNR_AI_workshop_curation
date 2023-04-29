@@ -9,6 +9,15 @@
 </p>
 
 
+## Installing Slicer and the BraTS_annotation module (work-in-progress)
+1. [Download 3D slicer](https://download.slicer.org)
+2. Enable developer mode (Edit > Application Settings > Developer > Check Enable developer mode). Slicer will restart. 
+3. Clone (or download) this repository
+4. Load custom module (Edit > Application Settings > Modules > Additional modules paths > (right-sided arrows) Add > add the directory containing the .py file (BraTS_annotation.py). Slicer will restart.
+5. If the module appears in red, this is typically because there is a bug in the .py file. You can check for a traceback in the python console embeded in 3D Slicer (will give you the code line and error). 
+6. Potential issue with Qt (3D Slicer splash screen appears and disappears, fail to load) : this happens if Qt is not installed on your system (e.g on a new Linux install) : example of Qt [install on Ubuntu](https://wiki.qt.io/Install_Qt_5_on_Ubuntu) 
+
+
 ## Official Slicer ressources
 - [Main page](https://www.slicer.org)
 - [Download page](https://download.slicer.org)
