@@ -2,7 +2,7 @@
 
 # 3D Slicer
 
-## 3D-Slicer customized GUI for annotation (BraTS semantic segmentation)
+## 3D-Slicer customized GUI for annotations (BraTS semantic segmentation)
 
 <p align="center">
   <img src="https://github.com/laurentletg/2023_ASNR_AI_workshop_curation/blob/main/readme%20image%20asnr%20ai%20workshop.png" />
