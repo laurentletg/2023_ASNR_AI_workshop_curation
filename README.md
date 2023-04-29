@@ -42,12 +42,20 @@ In order of difficulty/complexity:
 - [Robarts lab good baseline code (without .ui file - requires manually editing the widgets in the .py file)](https://github.com/lgroves6/SlicerIGTDevelopment/blob/master/YourModuleName.py)
 - [Slicer Case Iterator](https://github.com/JoostJM/SlicerCaseIterator): iterate through cases 
 
-## Misc ressources
-### Git
-- [Getting started with Git](https://swcarpentry.github.io/git-novice/)
-### PyQt
+## PyQt
 Building a GUI outside of Slicer (helps to understand how to build a GUI in Slicer)
 - [PyQt tutorial](https://realpython.com/python-pyqt-gui-calculator/)
 - [PyQt video series](https://youtu.be/Vde5SH8e1OQ)
+
+# Converting nifti files to numpy arrays
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Gt8e48LP7KFR4Dy1rZDoY7xqAEMCpYuB?usp=sharing)
+
+## Misc ressources
+### Git
+- [Getting started with Git](https://swcarpentry.github.io/git-novice/)
+
+
+
 
 
