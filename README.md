@@ -45,7 +45,8 @@ In order of difficulty/complexity:
 ## Misc ressources
 ### Git
 - [Getting started with Git](https://swcarpentry.github.io/git-novice/)
-### PyQt - building a GUI (outside of Slicer, helps to understand how to build a GUI in Slicer)
+### PyQt
+Building a GUI outside of Slicer (helps to understand how to build a GUI in Slicer)
 - [PyQt tutorial](https://realpython.com/python-pyqt-gui-calculator/)
 - [PyQt video series](https://youtu.be/Vde5SH8e1OQ)
 
