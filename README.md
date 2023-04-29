@@ -17,7 +17,8 @@
 - [Jupyter notebook examples](https://github.com/Slicer/SlicerNotebooks)
 - [Other segmentation examples](https://gist.github.com/lassoan)
 
-## Slicer module 
+## Slicer module development 
+In order of difficulty/complexity:
 - [Basic Python module (Hello python)](https://www.slicer.org/w/img_auth.php/c/c0/Slicer4_ProgrammingTutorial_Slicer4.5.pdf)
 - [Robarts lab documentation](https://www.robarts.ca/computerassistedsurgery/create_your_own/index.html) including well documented [example](https://github.com/lgroves6/SlicerIGTDevelopment/blob/master/YourModuleName.py) 
 - [PerkLab python module development tutorial (includes Qt designer)](https://www.slicer.org/wiki/Documentation/Nightly/Training#Tutorials_for_software_developers)
