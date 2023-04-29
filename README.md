@@ -31,7 +31,7 @@
 - [Slicer Case Iterator](https://github.com/JoostJM/SlicerCaseIterator): iterate through cases 
 - [HCC Slicer Case Iterator (long code !)](https://github.com/bsmarine/SlicerHCCMRICaseIterator)
 
-# Bonus
+## Bonus
 - [Getting started with Git](https://swcarpentry.github.io/git-novice/)
 
 
