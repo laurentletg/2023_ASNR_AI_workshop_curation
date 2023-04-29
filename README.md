@@ -49,6 +49,7 @@ Building a GUI outside of Slicer (helps to understand how to build a GUI in Slic
 
 # Converting nifti files to numpy arrays
 Notebook describing basic nifti file reading and visualisation. <br />
+This is the transition point between data annotation/curation and building a model. <br />
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Gt8e48LP7KFR4Dy1rZDoY7xqAEMCpYuB?usp=sharing)
 
