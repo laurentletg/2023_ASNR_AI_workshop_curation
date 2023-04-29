@@ -31,7 +31,7 @@
 - [Slicer Case Iterator](https://github.com/JoostJM/SlicerCaseIterator): iterate through cases 
 - [HCC Slicer Case Iterator (long code !)](https://github.com/bsmarine/SlicerHCCMRICaseIterator)
 
+# Bonus
+- [Getting started with Git](https://swcarpentry.github.io/git-novice/)
 
-# TODO
-- Create a module for initial annotations +/- using CNN predictions (e.g. 2D UNet), similar to [BRaTs 2021 methodology](https://arxiv.org/abs/2107.02314)
-- Create a module for segmentation review, create a new version of corrected segmentation to be used as groundthruth
+
