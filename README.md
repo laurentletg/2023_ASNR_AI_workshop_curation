@@ -5,6 +5,9 @@
   <img src="https://user-images.githubusercontent.com/48111184/145217094-d4f5716e-d110-4d1f-aa96-9cc9669aca35.jpg" />
 </p>
 
+
+<base target="_blank">
+
 # Useful 3D Slicer Documentation
 ## Python programing in Slicer
 - [Slicer Programming Tutorial](https://spujol.github.io/SlicerProgrammingTutorial/)
