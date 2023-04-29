@@ -23,8 +23,8 @@
 - [Developing and contributing extensions for 3D Slicer](https://docs.google.com/presentation/d/1JXIfs0rAM7DwZAho57Jqz14MRn2BIMrjB17Uj_7Yztc/edit#slide=id.g41f90baec_028)
 
 ## Videos and other ressources
-- [Short series showing basic python programming and module development (in German with subtitles)](https://youtube.com/playlist?list=PLJWCUXz3GeAfmYLiFcKus_c0jcsMnVsgb)
-- [Homemade videos and example](https://www.dropbox.com/sh/rukkctbdxa9ctra/AADr2e8T8X69Y1dAXxeNmBtba?dl=0)
+- [Module development series](https://www.youtube.com/@3dslicertutorial)
+- [Short series showing basic python programming and module development (in German with English subtitles)](https://youtube.com/playlist?list=PLJWCUXz3GeAfmYLiFcKus_c0jcsMnVsgb)
 
 ## Python module examples
 - [Robarts lab good baseline code (without .ui file)](https://github.com/lgroves6/SlicerIGTDevelopment/blob/master/YourModuleName.py)
