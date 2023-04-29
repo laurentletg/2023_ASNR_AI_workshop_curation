@@ -55,7 +55,8 @@ class BraTS_annotationWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         
         ### Added by Laurent
         self.DefaultDir = '/Users/laurentletourneau-guillon/Dropbox/CHUM/RECHERCHE/1 PROJECTS/2023 BRATS/Dr. Laurent_Letourneau-Guillon_LLG/Cases_to_approve'
-
+        self.DefaultOutDir = '/Users/laurentletourneau-guillon/Dropbox/CHUM/RECHERCHE/1 PROJECTS/2023 BRATS/Dr. Laurent_Letourneau-Guillon_LLG/Output directory'
+        self.OutDir = None
         self.current_index = 0
         
 
@@ -90,6 +91,8 @@ class BraTS_annotationWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.ui.listWidget.itemClicked.connect(self.on_listWidget_clicked)
         self.ui.pushButton_Next.connect('clicked(bool)', self.onNext)
         self.ui.pushButton_Previous.connect('clicked(bool)', self.onPrevious)
+        self.ui.pushButton_OutDir.connect('clicked(bool)', self.onpushButton_OutDir)
+        self.ui.pushButton_Save.connect('clicked(bool)', self.onpushButton_Save)
 
 
 
@@ -299,13 +302,46 @@ class BraTS_annotationWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         slicer.mrmlScene.Clear()
         print(f'loading {self.current_index}')
         
+        # Load series (MR sequences)
         loadable_volumes = self.get_sequence()
         for i in loadable_volumes:
             slicer.util.loadVolume(i)
             
         self.VolumeNode = slicer.util.getNodesByClass('vtkMRMLScalarVolumeNode')[0]
         
-         # Create segment names 
+        #### NESTING ALL SERIES UNDER A CASE####
+        # This allows to keep the segment connected to all series (MR Sequences)
+        
+        #Extract all names in VolumeNodes
+        VolumeNodes = slicer.util.getNodesByClass('vtkMRMLVolumeNode')
+        VolumeNodeNames = [i.GetName() for i in VolumeNodes]
+        #remove the segmentation
+        VolumeNodeNames = [i for i in VolumeNodeNames]
+        print(f'VolumeNodeNames ::: {VolumeNodeNames}')
+        
+        
+        # Create a subject so that all series can be nested under this subject
+        # Create a subject
+        shNode = slicer.mrmlScene.GetSubjectHierarchyNode()
+        # folderID = shNode.CreateFolderItem(shNode.GetSceneItemID(), 'MyFolder')
+        # Create a case name
+        self.case_name = f'Case_{self.case_IDs[self.current_index]}'
+        shNode.CreateSubjectItem(shNode.GetSceneItemID(), self.case_name)
+        
+        ## Get all the needed IDs (including the parent and child IDs)
+        # Get scene item ID first because it is the root item:
+        sceneItemID = shNode.GetSceneItemID()
+        # print(sceneItemID)
+        # Get direct parent (subjectItemID) by name
+        subjectItemID = shNode.GetItemChildWithName(sceneItemID, self.case_name)
+
+        # Get all child (itemID = MR seris/sequences)
+        for i in VolumeNodeNames:
+            itemID  = shNode.GetItemChildWithName(sceneItemID, i)
+            shNode.SetItemParent(itemID, subjectItemID)
+    
+
+        # Create segment names 
         self.ET_segment_name = "{}_ET".format(self.case_IDs[self.current_index])
         self.NCR_segment_name = "{}_NCR".format(self.case_IDs[self.current_index])
         self.SNFH_segment_name = "{}_SNFH".format(self.case_IDs[self.current_index])
@@ -327,9 +363,65 @@ class BraTS_annotationWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.addedSegmentID = self.segmentationNode.GetSegmentation().AddEmptySegment(self.ET_segment_name)
         self.addedSegmentID = self.segmentationNode.GetSegmentation().AddEmptySegment(self.NCR_segment_name)
         self.addedSegmentID = self.segmentationNode.GetSegmentation().AddEmptySegment(self.SNFH_segment_name)
+        # Nest the segmentation node under subject
+        
+        SegmentationNode = slicer.util.getNodesByClass('vtkMRMLSegmentationNode')[0]
+        print(f'SegmentationNode :: {SegmentationNode.GetName()}')
+        # Nest segmentation Node under subject
+        segm_itemID  = shNode.GetItemChildWithName(sceneItemID, SegmentationNode.GetName())
+        shNode.SetItemParent(segm_itemID, subjectItemID)
             
+    def onpushButton_OutDir(self):
+        self.OutDir= qt.QFileDialog.getExistingDirectory(None,"default director", self.DefaultOutDir, qt.QFileDialog.ShowDirsOnly)
+
+
+    def onpushButton_Save(self):
+        """
+        Updates the segmentation node and save as *.nii.gz      
+        """
+        # Update the segmentation and volume node (since brats sequences are all the same shape and size) we can
+        # Choose only the first volume node. 
+        # This update is done in case the user has changed the segmentation (e.g. manually) and wants to save it. 
+        volumeNode = slicer.util.getNodesByClass('vtkMRMLScalarVolumeNode')[0]
+        segmentationNode = slicer.util.getNodesByClass('vtkMRMLSegmentationNode')[0]
+        print('Getting the segmentation Node prior to saving')
+        print(f'segmentationNode :: {segmentationNode.GetName()}')
         
 
+        if not self.OutDir:
+            msg_nodir = qt.QMessageBox()
+            msg_nodir.setWindowTitle('Output directory')
+            msg_nodir.setText('No output directory !')
+            msg_nodir.setIcon(qt.QMessageBox.Warning)
+            msg_nodir.setStandardButtons(qt.QMessageBox.Ok)
+            msg_nodir.exec()
+        else:   
+            # Convert segment labels to  labelmap representation
+            labelmapVolumeNode = slicer.mrmlScene.AddNewNodeByClass('vtkMRMLLabelMapVolumeNode')
+            slicer.modules.segmentations.logic().ExportVisibleSegmentsToLabelmapNode(segmentationNode,labelmapVolumeNode, volumeNode)
+            
+            # Create a file and save the segmentation
+            outputSegmFileNifti = os.path.join(self.OutDir,
+                                                    "{}_.nii.gz".format(self.current_case_ID))
+            
+            
+            
+        if not os.path.isfile(outputSegmFileNifti):
+                  slicer.util.saveNode(labelmapVolumeNode, outputSegmFileNifti)
+                  print('Saved segmentation as .nii.gz file!')
+        else:
+            print('This .nii.gz file already exists!')
+            msg = qt.QMessageBox()
+            msg.setWindowTitle('Save As')
+            msg.setText(
+                f'The file {self.currentCase}_{self.annotator_name}_{self.revision_step[0]}.nii.gz already exists \n Do you want to replace the existing file?')
+            msg.setIcon(qt.QMessageBox.Warning)
+            msg.setStandardButtons(qt.QMessageBox.Ok | qt.QMessageBox.Cancel)
+            msg.buttonClicked.connect(self.msg_clicked)
+            msg.exec()
+
+     
+        
 #
 # BraTS_annotationLogic
 #
@@ -343,53 +435,54 @@ class BraTS_annotationLogic(ScriptedLoadableModuleLogic):
     Uses ScriptedLoadableModuleLogic base class, available at:
     https://github.com/Slicer/Slicer/blob/main/Base/Python/slicer/ScriptedLoadableModule.py
     """
+    pass
 
-    def __init__(self):
-        """
-        Called when the logic class is instantiated. Can be used for initializing member variables.
-        """
-        ScriptedLoadableModuleLogic.__init__(self)
+    # def __init__(self):
+    #     """
+    #     Called when the logic class is instantiated. Can be used for initializing member variables.
+    #     """
+    #     ScriptedLoadableModuleLogic.__init__(self)
 
-    def setDefaultParameters(self, parameterNode):
-        """
-        Initialize parameter node with default settings.
-        """
-        if not parameterNode.GetParameter("Threshold"):
-            parameterNode.SetParameter("Threshold", "100.0")
-        if not parameterNode.GetParameter("Invert"):
-            parameterNode.SetParameter("Invert", "false")
+    # def setDefaultParameters(self, parameterNode):
+    #     """
+    #     Initialize parameter node with default settings.
+    #     """
+    #     if not parameterNode.GetParameter("Threshold"):
+    #         parameterNode.SetParameter("Threshold", "100.0")
+    #     if not parameterNode.GetParameter("Invert"):
+    #         parameterNode.SetParameter("Invert", "false")
 
-    def process(self, inputVolume, outputVolume, imageThreshold, invert=False, showResult=True):
-        """
-        Run the processing algorithm.
-        Can be used without GUI widget.
-        :param inputVolume: volume to be thresholded
-        :param outputVolume: thresholding result
-        :param imageThreshold: values above/below this threshold will be set to 0
-        :param invert: if True then values above the threshold will be set to 0, otherwise values below are set to 0
-        :param showResult: show output volume in slice viewers
-        """
+    # def process(self, inputVolume, outputVolume, imageThreshold, invert=False, showResult=True):
+    #     """
+    #     Run the processing algorithm.
+    #     Can be used without GUI widget.
+    #     :param inputVolume: volume to be thresholded
+    #     :param outputVolume: thresholding result
+    #     :param imageThreshold: values above/below this threshold will be set to 0
+    #     :param invert: if True then values above the threshold will be set to 0, otherwise values below are set to 0
+    #     :param showResult: show output volume in slice viewers
+    #     """
 
-        if not inputVolume or not outputVolume:
-            raise ValueError("Input or output volume is invalid")
+    #     if not inputVolume or not outputVolume:
+    #         raise ValueError("Input or output volume is invalid")
 
-        import time
-        startTime = time.time()
-        logging.info('Processing started')
+    #     import time
+    #     startTime = time.time()
+    #     logging.info('Processing started')
 
-        # Compute the thresholded output volume using the "Threshold Scalar Volume" CLI module
-        cliParams = {
-            'InputVolume': inputVolume.GetID(),
-            'OutputVolume': outputVolume.GetID(),
-            'ThresholdValue': imageThreshold,
-            'ThresholdType': 'Above' if invert else 'Below'
-        }
-        cliNode = slicer.cli.run(slicer.modules.thresholdscalarvolume, None, cliParams, wait_for_completion=True, update_display=showResult)
-        # We don't need the CLI module node anymore, remove it to not clutter the scene with it
-        slicer.mrmlScene.RemoveNode(cliNode)
+    #     # Compute the thresholded output volume using the "Threshold Scalar Volume" CLI module
+    #     cliParams = {
+    #         'InputVolume': inputVolume.GetID(),
+    #         'OutputVolume': outputVolume.GetID(),
+    #         'ThresholdValue': imageThreshold,
+    #         'ThresholdType': 'Above' if invert else 'Below'
+    #     }
+    #     cliNode = slicer.cli.run(slicer.modules.thresholdscalarvolume, None, cliParams, wait_for_completion=True, update_display=showResult)
+    #     # We don't need the CLI module node anymore, remove it to not clutter the scene with it
+    #     slicer.mrmlScene.RemoveNode(cliNode)
 
-        stopTime = time.time()
-        logging.info(f'Processing completed in {stopTime-startTime:.2f} seconds')
+    #     stopTime = time.time()
+    #     logging.info(f'Processing completed in {stopTime-startTime:.2f} seconds')
 
 
 #

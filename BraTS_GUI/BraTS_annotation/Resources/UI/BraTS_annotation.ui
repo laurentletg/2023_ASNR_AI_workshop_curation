@@ -27,7 +27,7 @@
       <item row="0" column="1">
        <widget class="QPushButton" name="pushButton_DefaultDir">
         <property name="text">
-         <string>Default directory</string>
+         <string>Get default directory - Load cases</string>
         </property>
        </widget>
       </item>
@@ -80,7 +80,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="pushButton_OutDir">
         <property name="text">
          <string>Output directory</string>
         </property>

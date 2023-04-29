@@ -53,9 +53,9 @@ class Ui_BraTS_annotation(object):
         self.label_2 = QtWidgets.QLabel(self.outputsCollapsibleButton)
         self.label_2.setObjectName("label_2")
         self.formLayout_4.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        self.pushButton = QtWidgets.QPushButton(self.outputsCollapsibleButton)
-        self.pushButton.setObjectName("pushButton")
-        self.formLayout_4.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.pushButton)
+        self.pushButton_OutDir = QtWidgets.QPushButton(self.outputsCollapsibleButton)
+        self.pushButton_OutDir.setObjectName("pushButton_OutDir")
+        self.formLayout_4.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.pushButton_OutDir)
         self.verticalLayout.addWidget(self.outputsCollapsibleButton)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
@@ -67,12 +67,12 @@ class Ui_BraTS_annotation(object):
         _translate = QtCore.QCoreApplication.translate
         self.inputsCollapsibleButton.setText(_translate("BraTS_annotation", "Input"))
         self.label.setText(_translate("BraTS_annotation", "Default directory"))
-        self.pushButton_DefaultDir.setText(_translate("BraTS_annotation", "Default directory"))
+        self.pushButton_DefaultDir.setText(_translate("BraTS_annotation", "Get default directory - Load cases"))
         self.pushButton_Previous.setText(_translate("BraTS_annotation", "Previous"))
         self.pushButton_Next.setText(_translate("BraTS_annotation", "Next"))
         self.pushButton_Save.setText(_translate("BraTS_annotation", "Save"))
         self.outputsCollapsibleButton.setText(_translate("BraTS_annotation", "Output"))
         self.label_2.setText(_translate("BraTS_annotation", "Output directory"))
-        self.pushButton.setText(_translate("BraTS_annotation", "Output directory"))
+        self.pushButton_OutDir.setText(_translate("BraTS_annotation", "Output directory"))
 from ctkCollapsibleButton import ctkCollapsibleButton
 from qMRMLWidget import qMRMLWidget
