@@ -21,6 +21,7 @@
 - [Python script repository](https://slicer.readthedocs.io/en/latest/developer_guide/script_repository.html)
 
 ## Slicer Jupyter
+Useful for prototyping and exploring the python API
 - [Overview on github](https://github.com/Slicer/SlicerJupyter)
 - [Jupyter notebook examples](https://github.com/Slicer/SlicerNotebooks)
 - [Other segmentation examples](https://gist.github.com/lassoan)
