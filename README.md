@@ -48,7 +48,7 @@ Building a GUI outside of Slicer (helps to understand how to build a GUI in Slic
 - [PyQt video series](https://youtu.be/Vde5SH8e1OQ)
 
 # Converting nifti files to numpy arrays
-
+Notebook describing basic nifti file reading and visualisation. 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Gt8e48LP7KFR4Dy1rZDoY7xqAEMCpYuB?usp=sharing)
 
 ## Misc ressources
