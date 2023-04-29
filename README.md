@@ -6,9 +6,9 @@
 </p>
 
 
-# Useful 3D Slicer Documentation
+# 3D Slicer
 
-## Slicer webpage
+## Official Slicer ressources
 - [Main page](https://www.slicer.org)
 - [Download page](https://download.slicer.org)
 - [Documentation](https://slicer.readthedocs.io/en/latest/)
