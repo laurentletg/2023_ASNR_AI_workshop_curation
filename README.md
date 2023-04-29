@@ -1,12 +1,13 @@
 # 2023 ASNR AI workshop - Data annotation and curation
-## 3D-Slicer customized GUI for annotation
+
+# 3D Slicer
+
+## 3D-Slicer customized GUI for annotation (semantic segmentation)
 
 <p align="center">
   <img src="https://github.com/laurentletg/2023_ASNR_AI_workshop_curation/blob/main/readme%20image%20asnr%20ai%20workshop.png" />
 </p>
 
-
-# 3D Slicer
 
 ## Official Slicer ressources
 - [Main page](https://www.slicer.org)
