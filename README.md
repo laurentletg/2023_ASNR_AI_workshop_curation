@@ -7,6 +7,14 @@
 
 
 # Useful 3D Slicer Documentation
+
+## Slicer webpage
+- [Main page](https://www.slicer.org)
+- [Download page](https://download.slicer.org)
+- [Documentation](https://slicer.readthedocs.io/en/latest/)
+- [Developer guide](https://slicer.readthedocs.io/en/latest/developer_guide/index.html)
+- [Slicer API (C++)](https://apidocs.slicer.org/main/)
+
 ## Python programing in Slicer
 - [Slicer Programming Tutorial](https://spujol.github.io/SlicerProgrammingTutorial/)
 - [Beyond the basics programming](https://www.slicer.org/w/img_auth.php/7/79/SlicerModulesProgrammingBeyondBasics.pdf)
@@ -31,9 +39,8 @@ In order of difficulty/complexity:
 ## Python module examples
 - [Robarts lab good baseline code (without .ui file)](https://github.com/lgroves6/SlicerIGTDevelopment/blob/master/YourModuleName.py)
 - [Slicer Case Iterator](https://github.com/JoostJM/SlicerCaseIterator): iterate through cases 
-- [HCC Slicer Case Iterator (long code !)](https://github.com/bsmarine/SlicerHCCMRICaseIterator)
 
-## Bonus
+## Misc ressources
 - [Getting started with Git](https://swcarpentry.github.io/git-novice/)
 
 
