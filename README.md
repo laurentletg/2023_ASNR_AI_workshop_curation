@@ -60,7 +60,7 @@ Building a GUI outside of Slicer (helps to understand how to build a GUI in Slic
 Notebook describing basic nifti file reading and visualisation. <br />
 This is the transition point between data annotation/curation and building a model. <br />
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rUBhCcD9SZL3DXY_PZQ4n0GIBiGGp9lY?usp=sharing)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zq2zceI3jvngKKagyv57evBfHR5PXPBh?usp=sharing)
 
 # Misc ressources
 ## Git
