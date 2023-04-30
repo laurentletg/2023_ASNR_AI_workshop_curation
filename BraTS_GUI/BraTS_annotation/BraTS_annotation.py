@@ -159,20 +159,20 @@ class BraTS_annotationWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         """
         pass
 
-        if inputParameterNode:
-            self.logic.setDefaultParameters(inputParameterNode)
+        # if inputParameterNode:
+        #     self.logic.setDefaultParameters(inputParameterNode)
 
-        # Unobserve previously selected parameter node and add an observer to the newly selected.
-        # Changes of parameter node are observed so that whenever parameters are changed by a script or any other module
-        # those are reflected immediately in the GUI.
-        if self._parameterNode is not None and self.hasObserver(self._parameterNode, vtk.vtkCommand.ModifiedEvent, self.updateGUIFromParameterNode):
-            self.removeObserver(self._parameterNode, vtk.vtkCommand.ModifiedEvent, self.updateGUIFromParameterNode)
-        self._parameterNode = inputParameterNode
-        if self._parameterNode is not None:
-            self.addObserver(self._parameterNode, vtk.vtkCommand.ModifiedEvent, self.updateGUIFromParameterNode)
+        # # Unobserve previously selected parameter node and add an observer to the newly selected.
+        # # Changes of parameter node are observed so that whenever parameters are changed by a script or any other module
+        # # those are reflected immediately in the GUI.
+        # if self._parameterNode is not None and self.hasObserver(self._parameterNode, vtk.vtkCommand.ModifiedEvent, self.updateGUIFromParameterNode):
+        #     self.removeObserver(self._parameterNode, vtk.vtkCommand.ModifiedEvent, self.updateGUIFromParameterNode)
+        # self._parameterNode = inputParameterNode
+        # if self._parameterNode is not None:
+        #     self.addObserver(self._parameterNode, vtk.vtkCommand.ModifiedEvent, self.updateGUIFromParameterNode)
 
-        # Initial GUI update
-        self.updateGUIFromParameterNode()
+        # # Initial GUI update
+        # self.updateGUIFromParameterNode()
 
     def updateGUIFromParameterNode(self, caller=None, event=None):
         """
@@ -402,24 +402,12 @@ class BraTS_annotationWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             
             # Create a file and save the segmentation
             outputSegmFileNifti = os.path.join(self.OutDir,
-                                                    "{}_.nii.gz".format(self.current_case_ID))
+                                                    "Segmentation_{}.nii.gz".format(self.current_case_ID))
             
             
-            
-        if not os.path.isfile(outputSegmFileNifti):
-                  slicer.util.saveNode(labelmapVolumeNode, outputSegmFileNifti)
-                  print('Saved segmentation as .nii.gz file!')
-        else:
-            print('This .nii.gz file already exists!')
-            msg = qt.QMessageBox()
-            msg.setWindowTitle('Save As')
-            msg.setText(
-                f'The file {self.currentCase}_{self.annotator_name}_{self.revision_step[0]}.nii.gz already exists \n Do you want to replace the existing file?')
-            msg.setIcon(qt.QMessageBox.Warning)
-            msg.setStandardButtons(qt.QMessageBox.Ok | qt.QMessageBox.Cancel)
-            msg.buttonClicked.connect(self.msg_clicked)
-            msg.exec()
-
+        # Save the file    
+        slicer.util.saveNode(labelmapVolumeNode, outputSegmFileNifti)
+        print('Saved segmentation as .nii.gz file!')
      
         
 #
