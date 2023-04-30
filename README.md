@@ -63,10 +63,12 @@ This is the transition point between data annotation/curation and building a mod
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zq2zceI3jvngKKagyv57evBfHR5PXPBh?usp=sharing)
 
 # Misc ressources
-## MONAI label
-- [MONAI label](https://monai.io/label.html). Active learning tool - DL assited annotation.
+## MONAI label (3D Slicer extension)
+Active learning tool - DL assited annotation.
+- [MONAI label](https://monai.io/label.html). 
 - [MONAI label youtube - Overview](https://youtu.be/KjwuFx0pTXU)
 - [MONAI label youtube - Set-up](https://youtu.be/8y1OBQs2wis)
+- [MONAI label github](https://github.com/Project-MONAI/MONAILabel)
 
 ## Git
 - [Getting started with Git](https://swcarpentry.github.io/git-novice/)
