@@ -63,6 +63,7 @@ This is the transition point between data annotation/curation and building a mod
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zq2zceI3jvngKKagyv57evBfHR5PXPBh?usp=sharing)
 
 # Misc ressources
+## [MONAI label (active learning tool - DL assited annotation)](https://monai.io/label.html)
 ## Git
 - [Getting started with Git](https://swcarpentry.github.io/git-novice/)
 
