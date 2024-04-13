@@ -1,7 +1,7 @@
 # 2023 ASNR AI workshop - Data annotation and curation
 
 # 3D Slicer
-
+ 
 ## 3D-Slicer customized GUI for annotations (BraTS semantic segmentation)
 
 <p align="center">
